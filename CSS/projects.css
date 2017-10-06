@@ -1,0 +1,49 @@
+body {
+	
+}
+.title {
+	text-align : center;
+	background-color : white;
+	border-radius : 5px;
+	padding : 1px;
+	border : ridge;
+}
+.project {
+	background-color : white;
+	float : left;
+	margin : 15px;
+	border-radius : 5px;
+	border : ridge;
+	
+	padding : 5px;
+	width : 260px;
+}
+/* Custom Page CSS */
+.projectImage {/* Makes some images grayscale */
+	filter: gray; /* IE6-9 */
+  	-webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  	filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+	
+	width : 250px;
+	height : 200px;
+}
+
+.projectImage:hover {/* Returns them to colour once the user hovers on it */
+	animation: ungray 1s forwards;
+}
+
+
+@keyframes ungray { /* Animation that makes image turn from grayscale to full colour */
+	100% {
+        filter : none;
+        -webkit-filter : grayscale(0);
+        filter : grayscale(0);
+    }
+}
+@-webkit-keyframes ungray { /* Does the same thing, but for older browsers. */
+	100% {
+        filter : none;
+        -webkit-filter : grayscale(0);
+        filter : grayscale(0);
+    }
+}

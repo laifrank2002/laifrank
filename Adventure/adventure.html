@@ -1,0 +1,1036 @@
+<!DOCTYPE HTML>
+<html lang=en>
+
+<head>
+	
+	<title>Medieval Adventure</title>
+	<meta charset = UTF-8/>
+	
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="CSS/adventure.css">
+</head>
+
+<body>
+
+	<!-- This is where content goes -->
+	<div class = "content" onclick="trackClick()">
+		<div class = "info">
+			<h1>Medieval Adventure</h1>
+			<p>A Text-based Adventure</p>
+			<button type="button" onclick="StoryTab()">Story</button>
+			<button type="button" onclick="InventoryTab()">Inventory</button>
+			<button type="button" onclick="SettingsTab()">Settings</button>
+		</div>
+		
+		<div class = "info" id="inventory">
+			<h2>Inventory</h2>
+			<p>Any useful item you find will show up here. "Useful".</p>
+			<div class = "inventoryItem" id="whiskey">
+				<h3>Whiskey Bottle</h3>
+				<img src="Images/whiskey.jpg"/>
+				<p> You have <span id="whiskeyDisplay">0</span> bottle(s) of whiskey, all stolen from the same guard, probably.</p>
+			</div>
+			<div class = "inventoryItem" id="key">
+				<h3>Key</h3>
+				<img src="Images/key.jpg"/>
+				<p> You have <span id="keyDisplay">no</span> key, but you don't know which lock(s) it's for.</p>
+			</div>
+			<div class = "inventoryItem" id="coins">
+				<h3>Coins</h3>
+				<img src="Images/money.jpg"/>
+				<p> You have <span id="coinsDisplay">0</span> coins. Shiny!</p>
+			</div>
+		</div>
+		<div class = "info" id="settings">
+			<h2>Settings</h2>
+			<p>View Stats, and save or load stuff.</p>
+			<button type="button" onclick="autoSave()">Save</button>
+			<button type="button" onclick="loadFile()">Load</button>
+			<button type="button" onclick="resetGame()">Total Reset</button>
+			<p id="timesClicked"></p>
+		</div>
+		<div class = "info" id="story">
+			<!-- First Box -->
+			<div class="infoBox" id="S">
+				<h2>Introduction</h2>
+				<p>In the beginning, there was nothing, and God said let there be light, 
+				and there was light. And then God created guards, and then they threw you into 
+				this crummy prison cell. For what crime? You don't know. The point is, you have to
+				escape. </p>
+				<p>You scan your surroundings in your new 'home'. There's a guard sleeping outside. 
+				There is a window in your cell. The wall looks poorly built. </p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSA()" id="BSA">Attempt to climb out of the Window</button> 
+						<span class="tooltiptext"> I think I see the light!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSB()" id="BSB">Knock a nearby guard out!</button> 
+						<span class="tooltiptext"> He's sleeping while leaning on your cell. You think you can knock him out...</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSC()" id="BSC">Tunnel your way out with your bare hands!</button> 
+						<span class="tooltiptext"> You don't have any tools do you?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSD()" id="BSD">Cry for help!</button> 
+						<span class="tooltiptext"> Like a sissy! Maybe it'll work?</span>
+					</div>
+				</div>
+				
+			</div>
+			<!-- Branch A -->
+			<div class="infoBox" id="SA">
+				<h2>Freedom! Or not!</h2>
+				<p>You know what is very strong? Iron bars. You know what is not very strong? Your
+				soft, soft, head. It turns out bone does not break iron bars</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSAA">Return to your cell</button> 
+						<span class="tooltiptext"> I think I see the stars!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SB">
+				<h2>Down he goes!</h2>
+				<p>Like an ant, he is crushed by your fist. You gently look at his possesions. You see an uniform,
+				a key, and a bottle of whiskey. You pick up the whiskey for later. What do you do now?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBA()" id="BSBA">Take his keys</button> 
+						<span class="tooltiptext"> Just unlock all the doors and run out!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBB()" id="BSBB">Take his uniform</button> 
+						<span class="tooltiptext"> You can impersonate the guard! (Even though that's a crime in and of itself.)</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBC()" id="BSBC">Go back to your cell!</button> 
+						<span class="tooltiptext"> Maybe you forgot something? But a new guard will come in in his place. Don't ask.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBD()" id="BSBD">Unlock all the other cells</button> 
+						<span class="tooltiptext"> Yeah! Comradery and stuff! Maybe.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SC">
+				<h2>Freedom! !</h2>
+				<p> It turns out that walls are not really that sturdy, especially these. You easily knock down these walls. You've escaped!</p>
+				<p> Unfortunately, your neighbours are making a lot of commotion, and the guards try to pursue the prisoners.</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSCA">Pretend nothing happened</button> 
+						<span class="tooltiptext"> What? Lil' ol' me? Knock down this wall?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BSCB">Run through the hole!</button> 
+						<span class="tooltiptext"> What are you waiting for? Run for it!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SD">
+				<h2>Prisoners don't have freedom of speech</h2>
+				<p> The guard tells you to hush up, he tells you he'll kill you if you wake him up again.</p>
+				<p> What now?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDA()" id="BSDA">Start an Argument!</button> 
+						<span class="tooltiptext"> He thinks he can restrict your rights? Well, you've taken philosophy! You'll beat him, with words!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDB" id="BSDB">Punch him! Hard.</button> 
+						<span class="tooltiptext"> Well, if he's going to kill you, you might as well kill him.!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDC">Apologize!</button> 
+						<span class="tooltiptext"> Maybe he'll be nice all of a sudden?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBA">
+				<h2>There is more than one guard in this building.</h2>
+				<p>You stroll casually down the hallway, only to run into a guard. A tough-looking one. 
+				It turns out that this prison is well staffed, and has a second guard on duty.</p>
+				<p>He is clearly not amused. His face is full of scars, and his muscles are bigger than your entire
+				body. It seems foolish to face him. What do you do?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAA()" id="BSBAA">Run! What are you even reading this for?</button> 
+						<span class="tooltiptext">Why are you still reading this? RUN!!!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAB()" id="BSBAB">Stay and face him!</button> 
+						<span class="tooltiptext">Maybe you have a death wish?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBB">
+				<h2>A friendly guard</h2>
+				<p>A minute later, a guard approaches you and casually asks: "What'd you have for breakfast? I was on guard duty"</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBBA()" id="BSBBA">Eggs and Bacon</button> 
+						<span class="tooltiptext">Perfectly normal... right?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBBB()" id="BSBBB">Pancakes & Maple Syrup</button> 
+						<span class="tooltiptext">Also perfectly normal... right?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBBC()" id="BSBBC">Some prisoner's eyeballs</button> <!-- (If Whiskey >= 1) !-->
+						<span class="tooltiptext">Extremely rare</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBBD()" id="BSBBD">Just a bottle of whiskey, I was on guard duty too! I'm starved!</button> 
+						<span class="tooltiptext">Poor you</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBBA">
+				<h2>Bacon and Eggs</h2>
+				<p>We don't serve Bacon here! Hoarding meat, that's a crime! To the dungeons!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSBBAA">Back to the dungeons</button> 
+						<span class="tooltiptext">How was I supposed to know?!?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBBB">
+				<h2>Maple Syrup - apparently a luxury</h2>
+				<p>Where did you get Maple Syrup? That's a luxury! An expensive luxury! Wasting our budget like that, that's not right! To the dungeons with you!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSBBBA">To the dungeons... again</button> 
+						<span class="tooltiptext">That's unfortunate.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBBC">
+				<h2></h2>
+				<p>What is wrong with you? Urgg. That's cruelty! I should throw you into the dungeons in orderto teach you something about humility! To the dungeons withye!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSSBBCA">To the dungeons!</button> 
+						<span class="tooltiptext">Oops, probably shoulda held off with the whisky.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBBD">
+				<h2>Pity</h2>
+				<p>Oh, that's depressing. What say we both grab a quick bite to eat in the barracks?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJ()" id="BSBBDA">Sure</button>
+						<span class="tooltiptext">Why not?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBBDB()" id="BSBBDB">Nah, I still have an inmate to calm down. He took some one's keys and uniform</button> 
+						<span class="tooltiptext">Totally not suspicious</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBBDB">
+				<h2>Uh oh</h2>
+				<p>How did you know? Wait a minute! You're the new prisoner! Back to your cell!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSBBDBA">Go to your cell</button>
+						<span class="tooltiptext">Well, that was highly inconvienient!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDB()" id="BSBBDBB">Stay and fight</button> 
+						<span class="tooltiptext">It's you against the entire staff.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDA">
+				<h2>What shiny batons!</h2>
+				<p>The guard draws his batons and waves them dangerously close to your face threatening you once again.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDAA()" id="BSDAA">Laugh at him</button> 
+						<span class="tooltiptext">Ha ha ha</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDAB()" id="BSDAB">Grab his baton</button> 
+						<span class="tooltiptext">Gimme those!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDAC">Apologize</button>
+						<span class="tooltiptext">Hopefully he'll forgive you?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDAA">
+				<h2>Ouch...</h2>
+				<p>He punches you, hard. You wake up back in your cell. Was it all a dream? Owww, judging by that bruise on your neck, no it wasn't.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDAAA">Back to square one.</button>  
+						<span class="tooltiptext">*sigh</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDAB">
+				<h2>Thank you for those batons!</h2>
+				<p>You take his baton and beat him senseless.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSB()" id="BSDABA">What to do next?</button> 
+						<span class="tooltiptext">Hmmm...</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDB">
+				<h2></h2>
+				<p>You punch him and he doubles back groaning in pain. He calls his friends and they move in towards your cell.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDBA()" id="BSDBA"> Get ready to fend them off</button> 
+						<span class="tooltiptext">You got this ...hopefully</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDBB"> Give up</button> 
+						<span class="tooltiptext">This sends you back to the beginning</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDBA">
+				<h2>Headaches4Life</h2>
+				<p>They punch you. Super hard. You wake up covered in sores, in your cell. This was not a dream!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDBAA">Ouchie</button> 
+						<span class="tooltiptext">Back to the start</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDC">
+				<h2>Genius!</h2>
+				<p>He grunts and goes back to sleep. Suddenly, an idea popped into your head</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDCA">Back to the drawing board...</button> 
+						<span class="tooltiptext">Hmmm...</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCB()" id="BSDCB">Fish the keys out of his pocket</button> 
+						<span class="tooltiptext">Careful now...</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCB">
+				<h2>All those years of fishing finally paid off!</h2>
+				<p>You fish the keys out of his pocket and carefully unlock the cell. What now?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSB()" id="BSDCBA">Knock out the guard</button>
+						<span class="tooltiptext">Martial artist</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCBB()" id="BSDCBB">Unlock the rest of the cells</button>
+						<span class="tooltiptext">Free everyone else!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BSDCBC">Sneak your way out of the prison</button>
+						<span class="tooltiptext">As sneaky as an elephant in the room!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCBB">
+				<h2>Grateful inmate</h2>
+				<p>You unlock the first cell. The first inmate asks, why are you doing this?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCBBA()" id="BSDCBBA">For my own reasons</button> 
+						<span class="tooltiptext">I don't really care but I thought it would be cool.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCBBB()" id="BSDCBBB">For freedom and liberty!</button> 
+						<span class="tooltiptext">Wow. Just wow.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCBBC()" id="BSDCBBC">Because I hate the empire!</button> 
+						<span class="tooltiptext">Do you even know what you're talking about?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSDCBBD()" id="BSDCBBD">A Debt to my comrades</button> 
+						<span class="tooltiptext">What a nice person.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCBBA">
+				<h2>Being the cool dude</h2>
+				<p>You just reply: " I do whatever I wish, and it is in my interest that you are released." </p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showK()" id="BSDCBBAA">Next</button>  <!-- I use K because it was getting way too long !-->
+						<span class="tooltiptext">Uh... okay... what next?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCBBB">
+				<h2>You should run for a position in a democratic society... in a few decades</h2>
+				<p>You deliver a rousing speech on freedom, and liberty. That the those in power has oppressed the weak and the powerless for too long. That man has an inalienable right to liberty, and it was your duty to see to it. "Nice liberty you got there, too bad I'll have to take it" replies a guard. It looks like you took too long. They transfer you to another, better built jail, and you rot in prison for the rest of your days. You die of pneumonia. Moral of the story : Don't give long speeches, or else you will die of pneumonia.END:You're gone, but what of your legacy? What of your relatives?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSDCBBBA">Ask them to continue yours</button> 
+						<span class="tooltiptext">Restart</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCBBC">
+				<h2>Anti-empire</h2>
+				<p>You reply that you hated the empire. They've repressed you for all that you could remember, that's why you took up your occupation. Until this happened. "I just want to cause damages to them".</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showK()" id="BSDCBBCA">Spread hate for the empire</button> 
+						<span class="tooltiptext">Does this mean you support anarchy?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SDCBBD">
+				<h2>A debt repaid</h2>
+				<p>My past, let's not say. The future is the only thing that matters now. I had a family, they tried to take it away from me, and I ran away. Still, somebody took me in. I've got a debt that can never be repaid, and I'll try to repay it.</p>
+				<p>"Hilarious", he replies. "Now, what's the real reason?""I'm dead broke."You say."I'll come along with you, I'm broke too."</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showK()" id="BSDCBBDA">Nice</button> 
+						<span class="tooltiptext">Nice</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="K">
+				<h2>Freeing the others</h2>
+				<p>You continue to unlock each of the cells in turn. Soon, the inmates begin to follow you. There's an impressive crowd behind you. The guards also bunch up. Some of them try to recall their basic training and stand in formation, but others just look helpless.</p>
+				<p>"I didn't sign up to be a guard for this to happen" remarks one of them.</p>
+				<p>One of the crowd comes forward, and asks: "Oi, what do you want us to do?"</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKA()" id="BKA">Tell them to stand back</button> 
+						<span class="tooltiptext">Don't worry, I got this</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKB()" id="BKB">Tell them to surge forward</button> 
+						<span class="tooltiptext">Start rioting!!!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKC()" id="BKC">Do a complicated flanking maneuver</button> 
+						<span class="tooltiptext">Who knew you were such a tactitian?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKD()" id="BKD">Run the other way</button> 
+						<span class="tooltiptext">Retreat!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KA">
+				<h2>Hello</h2>
+				<p>You face the guards. What do you do?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKB()" id="BKAA">Motion the crowd to come forward</button> 
+						<span class="tooltiptext">Notion of aggression</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKAB()" id="BKAB">Offer to negotiate</button> 
+						<span class="tooltiptext">The peaceful way</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKAC()" id="BKAC">Punch the head guard</button> 
+						<span class="tooltiptext">Also a notion of aggression</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KB">
+				<h2>ATTACK</h2>
+				<p>The crowd surges forward, and easily knocks out several of the guards. Soon, you bust out of the prison through a hallway with a hole in it.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKDA()" id="BKBA">Escape!!!</button> 
+						<span class="tooltiptext">Get through the hole</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KAB">
+				<h2>That wasn't very nice or diplomatic</h2>
+				<p>The guards punch you.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKB()" id="BKB">Ouch</button> 
+						<span class="tooltiptext">I don't think your supporters were very happy with that</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KAC">
+				<h2>Smack</h2>
+				<p>You punch the head guard.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKB()" id="BKB">Now charge!</button> 
+						<span class="tooltiptext">What a boss</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KC">
+				<h2>On the road to Canonmore</h2>
+				<p>The crowd attempts to comprehend you, but are soon cut down by the slightly more disciplined (1 is better than 0) guards. However, the head guard, for whatever motivation, sees your tactical prowess, assumes that you did it in order to sway yourself in favor of the guards, ie betrayal, and gives you an offer to become a military planner apprentice (they're really short on lackeys for the moment). You accept, as that is the only choice. You set out for Canonmore.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showLB()" id="BLB">What just happened</button> 
+						<span class="tooltiptext">No words</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KD">
+				<h2>Run!</h2>
+				<p>You easily lose the guards, and escape from a hallway with a hole in it(what kind of lousy prison is this?). </p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BKDA">Though the hole</button> 
+						<span class="tooltiptext">Maybe you should offer some advice for making a more secure prison before you leave?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KDA">
+				<h2>ESCAPED</h2>
+				<p>You have a bunch of blood-thirsty criminals at your disposal. What now?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK" id="LINK">Be Robin Hood</button> <!-- LINK !-->
+						<span class="tooltiptext">Take from the rich and give to the poor!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKDAB()" id="BKTB">Run an "Insurance" scheme</button>
+						<span class="tooltiptext">Long live the insurance</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showKDAC()" id="BKTC">Go to a town</button>
+						<span class="tooltiptext">A town... not just any town - A town</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK2" id="LINK2">Get jobs at Lloyd's</button>
+						<span class="tooltiptext">This doesn't seem sketchy at ALL</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBAA">
+				<h2>The Three Doors</h2>
+				<p>It turns out that there are more than two guards in this ramshackle jailhouse. You outrun him, but he's on your trail. Suddenly, you hit three doors. Literally. That hurt a lot. Fortunately, there are three doors. Which door do you pick.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAAA()" id="BSBAAA">Left</button> 
+						<span class="tooltiptext">Left is always right</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAAB()" id="BSBAAB">Middle</button> <!-- To do list -->
+						<span class="tooltiptext">Middle is always right</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAAC()" id="BSBAAC">Right</button> 
+						<span class="tooltiptext">Right is always right</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAAD()" id="BSBAAD">I ain't afraid of no stinkin guard! </button> 
+						<span class="tooltiptext">Fight is always right</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBAB">
+				<h2>Surprise</h2>
+				<p>He seemed very surprised at this course of action! But then, he starts charging at you at full speed. What now?!?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABA()" id="BSBABA">Punch him</button> 
+						<span class="tooltiptext">Good ol' fashioned fist</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABB()" id="BSBABB">Sidestep him</button> 
+						<span class="tooltiptext">I hope this works like in the video games that don't exist yet!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABC()" id="BSBABC">Do nothing</button> 
+						<span class="tooltiptext">What could possibly go wrong?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABA">
+				<h2>DING DING DING - KO</h2>
+				<p>You knocked him out. What do you do now?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABAA()" id="BSBABAA">Take his stuff, all of it</button> 
+						<span class="tooltiptext">I wonder what he has</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABAB()" id="BSBABAB">Take his keys and uniform</button> 
+						<span class="tooltiptext">'Cause that's all I need</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAAD()" id="BSBABAC">Eat one of his donuts -he has a lot of donuts</button> 
+						<span class="tooltiptext">Never hurts to have a snack</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABAA">
+				<h2>Hoarding is a prison-wide offence</h2>
+				<p>You took a lot of stuff. The guards approach you, and arrests you for hoarding. Oh well.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BSBABAA">Back where you started</button> 
+						<span class="tooltiptext">But I wanted to keep his flip-flops!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABAB">
+				<h2>Your "friend"</h2>
+				<p>Well then, you coolly wear his uniform until a 'colleague' of his says "Hey, it's break time, I'll take over for yer' no need to thank me." He's obviously drunk and looking for some time alone and to nap. Another guard is also coming along to the guard room. What do you do?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABABA()" id="BSBABABA">My mother wants to see me</button> 
+						<span class="tooltiptext">...</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJ()" id="BSBABABB">Sure, let's go! I'm tired.</button> 
+						<span class="tooltiptext">Be cheerful</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BSBABABC">I have to leave, don't ask.</button> 
+						<span class="tooltiptext">Don't be weird</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABAC">
+				<h2>Ah, Delicious</h2>
+				<p>You eat one of his donuts. Ohh, is that chocolate frosting? Whatever the case, the taste of donuts is a refreshing break from this bleak existence.</p>
+				<div class = "infoLine">
+					<div class="tooltip">
+						<button type="button" onclick="showSBABA()" id="BSBABACA">Let's go back</button>
+						<span class="tooltiptext">You can't procrastinate life forever, you know.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABABA">
+				<h2>I think you should've learned a bit more about the guard's background</h2>
+				<p>"You don't have a mother, remember?" says the guard. This isn't funny Gerald. What now?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABABAA()" id="BSBABABAA"> I just got one!</button> 
+						<span class="tooltiptext">... that doesn't even make sense</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABABAA()" id="BSBABABAB"> It was a joke!</button> 
+						<span class="tooltiptext">Wow - nice joke</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABABAC()" id="BSBABABAC"> No, but I have a foster mother!</button> 
+						<span class="tooltiptext"> Uh</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABABAA">
+				<h2>You should see your face</h2>
+				<p>Okay, you need rest, I'm dragging you to the barracks.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJ()" id="BSBABABAAA">But, But</button> 
+						<span class="tooltiptext">No butts' about it... I'll stop, I'm in enough trouble already.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABABAC">
+				<h2></h2>
+				<p>The other guard shrugs, and you're free to wonder outside. There, you approach a long hallway.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BSBABABACA">The other guard shrugs, and you're free to wonder outside. There, you approach a long hallway.</button> 
+						<span class="tooltiptext">Nice recovery</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="L">
+				<h2>Decisions, decisions, decisions</h2>
+				<p>The door leads to a very long hall way. You cross the hallway, and then... This jail really is terrible, they haven't even finished building it! You escape easily. What do you do now? </p>
+				<p>You examine your surroundings. There is a path leading somewhere... Also a river.</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BLA">Return to your warm(okay, not that warm) cell with one semi-square meal every other day</button> 
+						<span class="tooltiptext">Actually I'm starting to think that this isn't such a hot idea?</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showLB()" id="BLB">Head along the path</button> 
+						<span class="tooltiptext">All roads slash paths go to Rome.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showLC()" id="BLC">Head along the river</button> 
+						<span class="tooltiptext">Civilization Smivilization, what good has civilization ever done you?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="LB">
+				<h2>The city of City</h2>
+				<p>You reach of the city of ... City is very much exaggerated. In the deep, dark, forest, you reach an unincorporated but inhabited area! In some circles, it's known as a h__lhole. Not just that, but you found out that you're the governor. You look back at your qualifications. They accept pretty much anybody, actually, at this point. The inhabitants all dislike each other, and wouldn't trust them even in the most direst of consequences.</p>
+				<p>Do you stay?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK3" id="LINK3">Yes - Link to new secret adventure</button> <!-- To another story !-->
+						<span class="tooltiptext">Interesting</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BL">H__l no!</button> 
+						<span class="tooltiptext">Censored for reasons, Internet censors are very strict about these things.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="LC">
+				<h2>Welcome to Canonmore!</h2>
+				<p>You reach the city of Canonmore, governed by your long-time rival in the Academy. But that was a long time ago. </p>
+				<p>You settle down from your existence. Eventually, you fall in love, get married, and produce children. You spend the rest of your life peddling goods as a merchant in the city, recounting your experiences on the road. Eventually, you pass away on your death bed. In your will, what did you do?</p>
+				<p>END:You are gone, but what of your legacy? What shall your heir be commanded to do?</p>
+				<!-- Need to add list of links to other games !-->
+				<p> </p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BLCA">Take up the profession of Nomading(Restart)</button> 
+						<span class="tooltiptext">And He has determined that it'll happen all over again.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="J">
+				<h2>Oops, probably shouldn't be here right now.</h2>
+				<p>The left door led directly... to the guard's barracks. Luckily, they're all drunk. How drunk? Drunk enough to accept you as one of their own if you answer one of their questions. The First one asks: Hey George, what's the password?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJA()" id="BJA">I ... Forgot?</button> 
+						<span class="tooltiptext">Very spooky</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBS()" id="BJB">Banana Cream Pie!</button> 
+						<span class="tooltiptext">Very spooky</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJC()" id="BJC">There are no passwords you drunken fool! Get back on duty, this is the inspector speaking!</button> 
+						<span class="tooltiptext">Very spooky</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JA">
+				<h2>Private meeting</h2>
+				<p>You always forget, Fred. How very like you. Come on, scram! This is a private meeting. You approach the door, and enter a hallway.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BJAA">Spooky</button> 
+						<span class="tooltiptext">Very spooky</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JB">
+				<h2>So close and yet so far!</h2>
+				<p>How did you know? I didn't tell anyone yet! You must be a spy! Into the dungeons with ye!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BS">Oh noes!</button> 
+						<span class="tooltiptext">That's unfortunate.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JC">
+				<h2>Yes SIR</h2>
+				<p>Uh, Uh, Yes Inspector! Chimes the guards like clock-work. They do their best to do a military salute, rather awkwardly, and march in step out of the room one by one. Now you can scan the room in peace.</p>
+				<p>You notice a grandfather clock, a table with documents, and a door. What now?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJCA()" id="BJCA">Examine the clock</button> 
+						<span class="tooltiptext">What a beautiful design!</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJCB()" id="BJCB">Read the documents</button> 
+						<span class="tooltiptext">Very interesting...</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BJCC">Go through the door</button> 
+						<span class="tooltiptext">Sounds like there's something important going on inside.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JCA">
+				<h2>Mysterious tunnel</h2>
+				<p>The Clock has a note taped to the end of the pendulum. The note says : For emergencies only. You push on the clock, but the wall on the back is revealed to be a false wall. You try the key, and it opens to another tunnel. What now?</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJC()" id="BJCAA"> Examine something else</button> 
+						<span class="tooltiptext">Maybe you want to do something else for now.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJCAB()" id="BJCAB"> Examine the tunnel</button> 
+						<span class="tooltiptext">The dark and scary tunnel - Are you sure?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JCAB">
+				<h2>Tresure?</h2>
+				<p id="treasureBox">You go down the tunnel, there, you see a chest with a lock. You cannot unlock it. </p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJC()" id="BJCABA">Ah bummer</button> <!-- Special Chest that gifts transferable resources?  !-->
+						<span class="tooltiptext">Ohh, a chest! Not that kind of chest! Take your mind out of the gutter!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="JCB">
+				<h2>Documents and info</h2>
+				<p>The documents don't say much, except something about them lacking a governor in ... It doesn't say, there appears not to be a name to the place. It's inhabited though. They're so desperate for a governor that they'll take the first person with imperial qualifications. Hmmm... You think back to your own qualifications. You come back to the room. <span id="keyBox">While rifling through the documents, you find a key! This will come in handy.</span></p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showJC()" id="BJCBA">What else?</button> <!-- This also needs some revising !-->
+						<span class="tooltiptext">Look around</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBAAC">
+				<h2>LOCKED!</h2>
+				<p>The right door is locked. Choose another door! Hurry!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBAA()" id="BSBAA">Try another door</button> 
+						<span class="tooltiptext">Hurry up - time's a ticking!</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBAAD">
+				<h2>Be a hero!</h2>
+				<p>You try to stand up to the guard and stand there, looking all hero-type person like and all. He knocks you out instantly and drags you back to your cell. Oh well. A different guard arrives and starts to nap.</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showS()" id="BS">MEGA *sigh</button> 
+						<span class="tooltiptext">Back to the cell</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBABB">
+				<h2>Owned!</h2>
+				<p>He hits the wall, and goes down with a thud!</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showSBABA()" id="BSBABA">That must've hurt</button> 
+						<span class="tooltiptext">No feeling sorry for him though</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="SBC">
+				<h2>A hallway appears</h2>
+				<p>Now, you enter a hallway</p>
+				<p></p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="showL()" id="BSBCA">Continue</button> 
+						<span class="tooltiptext">and..?</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KTB">
+				<h2>It's totally legal!</h2>
+				<p>You and several co-conspirators come up with a devious scheme to make some dough. Create a complicated insurance scheme that won't pay out damages and charges high premiums, then lobby the local sheriff to make cart insurance mandatory. It works perfectly, and you and your gang of highway robbers live in luxury for the rest of your lives. </p>
+				<p>ENDING: Eventually, you produce children, and die, just like in the bible. Before you go, what do you command them to do?</p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK4" id="LINK4"> Attend the Academy - Link to other game</button> 
+						<span class="tooltiptext">Shameless plug for something that doesn't exist yet.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK5" id="LINK5"> Become a merchant - Link to yet anther game!</button> 
+						<span class="tooltiptext">Shameless plug for something that doesn't exist yet.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="?" id="?"> Nomading!(Restart)</button> 
+						<span class="tooltiptext">Shameless plug for something that doesn't exist yet.</span>
+					</div>
+				</div>
+			</div>
+			<div class="infoBox" id="KTC">
+				<h2>It's a living</h2>
+				<p>Eventually, you arrive at a town. There, a merchant hires you to protect his cargo. You and your merry band become mercenaries. </p>
+				<p>ENDING: Eventually, you produce children, and die, just like in the bible. Before you go, what do you command them to do? </p>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK4" id="LINK4"> Attend the Academy - Link to other game</button> 
+						<span class="tooltiptext">Shameless plug for something that doesn't exist yet.</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="LINK5" id="LINK5"> Become a merchant - Link to yet anther game!</button> 
+						<span class="tooltiptext">Yay</span>
+					</div>
+				</div>
+				<div class = "infoLine"> 
+					<div class="tooltip">
+						<button type="button" onclick="?" id="?">  Nomading!(Restart)</button> 
+						<span class="tooltiptext">Shameless plug for something that doesn't exist yet.</span>
+					</div>
+				</div>
+			</div>
+
+		
+		</div>
+	</div>
+	<!-- Scripts, load after so that Ids can be used! -->
+	<!-- Allows for the game to work by concealment of objects. -->
+	<script src="Javascript/mystery.js"> </script>
+	<!-- Navigation change .info element script -->
+	<script src="Javascript/tabChange.js"> </script>
+	<!-- Saving Loading Script-->
+	<script src="Javascript/export.js"> </script>
+		
+</body>
+
+</html>

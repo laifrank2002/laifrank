@@ -1,0 +1,39 @@
+/* Importing Fonts from Google */
+@import url('https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Over+the+Rainbow|Reenie+Beanie');
+
+li {
+	background-color : #0066CC;
+	height : 80px;
+}
+h2 {
+	font-weight : normal;
+}
+.content {
+	margin-top : 80px;
+	margin-left : 10%;
+	margin-right : 10%
+}
+.box {
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.titleBox {
+	background-color : red;
+	color : white;
+	padding: 14px 16px;	
+	text-align : center;
+	margin-top : 50px;
+}
+.blogItem {
+	background-color : white;
+	color : black;
+	padding: 14px 16px;
+	
+}
+.blogText {
+	
+}
+a{
+	text-decoration : none;
+}
+
+
