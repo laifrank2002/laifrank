@@ -8,13 +8,14 @@ body {
 	background-position : 10% 10%;
 	background-repeat : no-repeat;
 	background-size: cover;
+	background-attachment: fixed;
 	
 	font-family : "Over the Rainbow","Reenie Beanie","Dawning of a New Day",calibri,arial,serif;
 	font-size : 2em;
 }
 .content {
 	position : relative;
-	top : 40px;
+	top : 80px;
 	z-index : 0;
 }
 

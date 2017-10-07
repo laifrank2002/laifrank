@@ -2,14 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Over+the+Rainbow|Reenie+Beanie');
 
 li {
-	background-color : #0066CC;
-	height : 80px;
 }
 h2 {
 	font-weight : normal;
 }
 .content {
-	margin-top : 80px;
 	margin-left : 10%;
 	margin-right : 10%
 }

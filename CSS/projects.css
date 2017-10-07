@@ -1,19 +1,16 @@
 body {
-	
+	overflow:auto;
 }
 .title {
 	text-align : center;
-	background-color : white;
-	border-radius : 5px;
+	background-color : red;
+	color : white;
 	padding : 1px;
-	border : ridge;
 }
 .project {
 	background-color : white;
 	float : left;
 	margin : 15px;
-	border-radius : 5px;
-	border : ridge;
 	
 	padding : 5px;
 	width : 260px;
